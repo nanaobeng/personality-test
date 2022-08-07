@@ -50,7 +50,7 @@ exports.createQuestion = async (req, res) => {
 exports.updateQuestion = async (req, res) => {
   try {
     const { id, description, answer, option_a, option_b, option_c, option_d } =
-      req.params;
+    req.body;
 
     const question = await Question.findOne({ where: { id: id } });
 
@@ -83,7 +83,7 @@ exports.updateQuestion = async (req, res) => {
 
 exports.deleteQuestion = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
 
     const question = await Question.findOne({ where: { id: id } });
 
