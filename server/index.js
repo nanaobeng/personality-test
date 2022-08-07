@@ -15,8 +15,12 @@ app.use(express.json());
 
 
 const main = async () => {
+
+    const authRoutes = require('./routes/auth')
+    app.use(authRoutes)
     
-    
+    sequelize.sync({ alter: true  });
+    console.log("All models were synchronized successfully.");
     const port = process.env.PORT || 8000;
     app.listen(port, () => {
       console.log(`SERVER RUNNING ON PORT ${port}`);
