@@ -16,7 +16,7 @@ exports.getQuestions = async (req, res) => {
 // Admin Controllers
 
 exports.createQuestion = async (req, res) => {
-  const { description, answer, option_a, option_b, option_c, option_d } =
+  const { description, option_a, option_b, option_c, option_d, selection_a, selection_b, selection_c, selection_d } =
     req.body;
 
   try {
@@ -26,17 +26,18 @@ exports.createQuestion = async (req, res) => {
       return res.status(401).json("Question already exists!");
     }
 
-    const salt = await bcrypt.genSalt(10);
-
-    const hashedAnswer = await bcrypt.hash(answer, salt);
+    
 
     const newQuestion = await Question.create({
       description: description,
-      answer: hashedAnswer,
       option_a: option_a,
       option_b: option_b,
       option_c: option_c,
       option_d: option_d,
+      selection_a: selection_a,
+      selection_b: selection_b,
+      selection_c: selection_c,
+      selection_d: selection_d,
     });
 
     console.log("success");
@@ -49,21 +50,25 @@ exports.createQuestion = async (req, res) => {
 
 exports.updateQuestion = async (req, res) => {
   try {
-    const { id, description, answer, option_a, option_b, option_c, option_d } =
+    const { id, description, option_a, option_b, option_c, option_d , selection_a, selection_b, selection_c, selection_d} =
     req.body;
 
     const question = await Question.findOne({ where: { id: id } });
 
     if (question) {
-      const hashedAnswer = await bcrypt.hash(answer, salt);
+
       await Question.update(
         {
           description: description,
-          answer: hashedAnswer,
+      
           option_a: option_a,
           option_b: option_b,
           option_c: option_c,
           option_d: option_d,
+          selection_a: selection_a,
+          selection_b: selection_b,
+          selection_c: selection_c,
+          selection_d: selection_d,
         },
         {
           where: {

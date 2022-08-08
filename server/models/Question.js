@@ -13,9 +13,6 @@ const Question =  sequelize.define(
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      answer: {
-        type: DataTypes.STRING,
-      },
       option_a: {
         type: DataTypes.STRING,
       },
@@ -28,6 +25,20 @@ const Question =  sequelize.define(
       option_d: {
         type: DataTypes.STRING,
       },
+
+      selection_a: {
+        type: DataTypes.STRING,
+      },
+      selection_b: {
+        type: DataTypes.STRING,
+      },
+      selection_c: {
+        type: DataTypes.STRING,
+      },
+      selection_d: {
+        type: DataTypes.STRING,
+      },
+      
     },
     {
       sequelize,

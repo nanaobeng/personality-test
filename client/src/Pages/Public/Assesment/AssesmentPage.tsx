@@ -11,7 +11,8 @@ const Assesment = () => {
       if (data.error) {
         setError(data.error);
       } else {
-        setQuestions(questions);
+        console.log(data);
+        setQuestions(data);
       }
     });
   };
