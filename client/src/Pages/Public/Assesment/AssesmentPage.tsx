@@ -40,6 +40,148 @@ const Assesment = () => {
     });
   };
 
+  const assesmentForm = (i: number, data: any) => {
+    return (
+      i === page && (
+        <div className="row" key={i}>
+          <div className="col-12 py-2">
+            <span>
+              {" "}
+              Question {i + 1}/{questions.length}
+            </span>
+          </div>
+          <div className="col-12 py-2">
+            <span
+              style={{
+                fontSize: "2.2vh",
+                fontWeight: "bold",
+              }}
+            >
+              {data.description}
+            </span>
+          </div>
+          <div className="col-12 py-2">
+            <Radio.Group
+              buttonStyle="solid"
+              onChange={onChange}
+              optionType="button"
+              name={`${i}`}
+              value={values[`${i}`][0]}
+              className="w-100"
+            >
+              <Space direction="vertical">
+                <Radio value={`${data.option_a}`} style={{ width: "100%" }}>
+                  {data.option_a}
+                </Radio>
+                <Radio value={`${data.option_b}`} style={{ width: "100%" }}>
+                  {data.option_b}
+                </Radio>
+                <Radio value={`${data.option_c}`} style={{ width: "100%" }}>
+                  {data.option_c}
+                </Radio>
+                <Radio value={`${data.option_d}`} style={{ width: "100%" }}>
+                  {data.option_d}
+                </Radio>
+              </Space>
+            </Radio.Group>
+          </div>
+          {pageNavigation(i)}
+        </div>
+      )
+    );
+  };
+
+  const pageNavigation = (i: number) => {
+    return (
+      <>
+        {i === 0 && (
+          <div className="col-12">
+            {values[`${i}`][0] === "" ? (
+              <input
+                value="Next Question"
+                className="btn btn-secondary w-100"
+                type="button"
+                disabled
+              />
+            ) : (
+              <span
+                onClick={() => {
+                  setPage(i + 1);
+                }}
+                className="btn btn-success w-100"
+              >
+                Next Question
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Inbetween */}
+
+        {i > 0 &&
+          (i !== questions.length - 1 ? (
+            <>
+              <div className="col-6">
+                <span
+                  onClick={() => {
+                    setPage(i - 1);
+                  }}
+                  className="btn btn-info w-100"
+                >
+                  Previous Question
+                </span>
+              </div>
+
+              <div className="col-6">
+                <span
+                  onClick={() => {
+                    setPage(i + 1);
+                  }}
+                  className="btn btn-success w-100"
+                >
+                  Next Question
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="col-6">
+                <span
+                  onClick={() => {
+                    setPage(i - 1);
+                  }}
+                  className="btn btn-info w-100"
+                >
+                  Previous Question
+                </span>
+              </div>
+
+              {}
+
+              <div className="col-6">
+                {values[`${i}`][0] === "" ? (
+                  <input
+                    value="Submit Assesment"
+                    className="btn btn-secondary w-100"
+                    type="button"
+                    disabled
+                  />
+                ) : (
+                  <span
+                    onClick={() => {
+                      submitAssesment();
+                    }}
+                    className="btn btn-success w-100"
+                  >
+                    Submit Assesment
+                  </span>
+                )}
+              </div>
+            </>
+          ))}
+      </>
+    );
+  };
   const getReferences = () => {
     let tmp: any = {};
     questions &&
@@ -99,150 +241,7 @@ const Assesment = () => {
                     <div className="col-12">
                       {questions &&
                         questions.map((data: any, i: number) => {
-                          return (
-                            i === page && (
-                              <div className="row" key={i}>
-                                <div className="col-12 py-2">
-                                  <span>
-                                    {" "}
-                                    Question {i + 1}/{questions.length}
-                                  </span>
-                                </div>
-                                <div className="col-12 py-2">
-                                  <span
-                                    style={{
-                                      fontSize: "2.2vh",
-                                      fontWeight: "bold",
-                                    }}
-                                  >
-                                    {data.description}
-                                  </span>
-                                </div>
-                                <div className="col-12 py-2">
-                                  <Radio.Group
-                                    buttonStyle="solid"
-                                    onChange={onChange}
-                                    optionType="button"
-                                    name={`${i}`}
-                                    value={values[`${i}`][0]}
-                                    className="w-100"
-                                  >
-                                    <Space direction="vertical">
-                                      <Radio
-                                        value={`${data.option_a}`}
-                                        style={{ width: "100%" }}
-                                      >
-                                        {data.option_a}
-                                      </Radio>
-                                      <Radio
-                                        value={`${data.option_b}`}
-                                        style={{ width: "100%" }}
-                                      >
-                                        {data.option_b}
-                                      </Radio>
-                                      <Radio
-                                        value={`${data.option_c}`}
-                                        style={{ width: "100%" }}
-                                      >
-                                        {data.option_c}
-                                      </Radio>
-                                      <Radio
-                                        value={`${data.option_d}`}
-                                        style={{ width: "100%" }}
-                                      >
-                                        {data.option_d}
-                                      </Radio>
-                                    </Space>
-                                  </Radio.Group>
-                                </div>
-                                {i === 0 && (
-                                  <div className="col-12">
-                                    {values[`${i}`][0] === "" ? (
-                                      <input
-                                        value="Next Question"
-                                        className="btn btn-secondary w-100"
-                                        type="button"
-                                        disabled
-                                      />
-                                    ) : (
-                                      <span
-                                        onClick={() => {
-                                          setPage(i + 1);
-                                        }}
-                                        className="btn btn-success w-100"
-                                      >
-                                        Next Question
-                                      </span>
-                                    )}
-                                  </div>
-                                )}
-
-                                {/* Inbetween */}
-
-                                {i > 0 &&
-                                  (i !== questions.length - 1 ? (
-                                    <>
-                                      <div className="col-6">
-                                        <span
-                                          onClick={() => {
-                                            setPage(i - 1);
-                                          }}
-                                          className="btn btn-info w-100"
-                                        >
-                                          Previous Question
-                                        </span>
-                                      </div>
-
-                                      <div className="col-6">
-                                        <span
-                                          onClick={() => {
-                                            setPage(i + 1);
-                                          }}
-                                          className="btn btn-success w-100"
-                                        >
-                                          Next Question
-                                        </span>
-                                      </div>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <div className="col-6">
-                                        <span
-                                          onClick={() => {
-                                            setPage(i - 1);
-                                          }}
-                                          className="btn btn-info w-100"
-                                        >
-                                          Previous Question
-                                        </span>
-                                      </div>
-
-                                      {}
-
-                                      <div className="col-6">
-                                        {values[`${i}`][0] === "" ? (
-                                          <input
-                                            value="Submit Assesment"
-                                            className="btn btn-secondary w-100"
-                                            type="button"
-                                            disabled
-                                          />
-                                        ) : (
-                                          <span
-                                            onClick={() => {
-                                              submitAssesment();
-                                            }}
-                                            className="btn btn-success w-100"
-                                          >
-                                            Submit Assesment
-                                          </span>
-                                        )}
-                                      </div>
-                                    </>
-                                  ))}
-                              </div>
-                            )
-                          );
+                          return assesmentForm(i, data);
                         })}
                     </div>
                   </div>
