@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { message, Popconfirm } from "antd";
-
+import { isAuthenticated } from "../../Auth/APIs/APIs";
 import { deleteQuestion } from "../APIs/APIs";
 import UpdateModal from "./UpdateQuestion/UpdateModal";
 
@@ -10,17 +10,15 @@ interface Props {
 
 const ManageQuestions: FC<Props> = ({ questions }) => {
   const [error, setError] = useState(false);
-
+  const { token, user } = isAuthenticated();
   const confirm = (id: number) => {
-    deleteQuestion(
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6Im5hbmFvYmVuZ21hcm51QGdtYWlsLmNvbSIsImlhdCI6MTY2MDA1MjI4M30.WFbOVC47hnil4Ep6O6eEyy3SzmmfgyhGp7wNCpTEhFk",
-      id
-    ).then((data: any) => {
+    deleteQuestion(token, id).then((data: any) => {
       if (data.error) {
         setError(data.error);
       } else {
         message.success("Question Deleted");
-        window.location.href = "/admin/dashboard";
+        console.log(data);
+        // window.location.href = "/admin/dashboard";
       }
     });
   };

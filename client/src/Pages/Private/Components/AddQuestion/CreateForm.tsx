@@ -1,6 +1,9 @@
 import { FC, useState } from "react";
 import { addQuestion } from "./APIs/APIs";
+
+import { isAuthenticated } from "../../../Auth/APIs/APIs";
 const CreateForm = () => {
+  const { token, user } = isAuthenticated();
   const [error, setError] = useState(false);
   const [values, setValues] = useState({
     description: "",
@@ -41,7 +44,7 @@ const CreateForm = () => {
     formData.set("selection_c", selection_c);
     formData.set("selection_d", selection_d);
 
-    addQuestion("token", formData).then((data: any) => {
+    addQuestion(token, formData).then((data: any) => {
       if (data.error) {
         setError(data.error);
       } else {

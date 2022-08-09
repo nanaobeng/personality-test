@@ -13,7 +13,7 @@ router.post("/question/:id",getQuestion);
 
 router.post("/admin/question/create",createQuestion);
 router.put("/admin/question/update/:id",updateQuestion);
-router.delete("/admin/question/delete/:id",deleteQuestion);
+router.delete("/admin/question/delete/:id",authorize,deleteQuestion);
 
 
 

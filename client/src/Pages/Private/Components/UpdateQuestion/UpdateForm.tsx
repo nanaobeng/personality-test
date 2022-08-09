@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
 import { updateQuestion } from "./APIs/APIs";
+import { isAuthenticated } from "../../../Auth/APIs/APIs";
 interface Props {
   question: any;
 }
 const UpdateForm: FC<Props> = ({ question }) => {
+  const { token, user } = isAuthenticated();
   const [error, setError] = useState(false);
   const [values, setValues] = useState({
     description: question.description,
@@ -44,7 +46,7 @@ const UpdateForm: FC<Props> = ({ question }) => {
     formData.set("selection_c", selection_c);
     formData.set("selection_d", selection_d);
 
-    updateQuestion("token", id, formData).then((data: any) => {
+    updateQuestion(token, id, formData).then((data: any) => {
       if (data.error) {
         setError(data.error);
       } else {
