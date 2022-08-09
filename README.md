@@ -1,4 +1,4 @@
-# Web Applicatin For Personality Test
+# Web Application For Personality Test
 
 ### URL - https://nana-teamway.netlify.app/
 
