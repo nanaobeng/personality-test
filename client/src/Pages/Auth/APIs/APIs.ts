@@ -1,4 +1,4 @@
-
+import {API} from '../../../config';
 export const authenticate = (data:any,next:any) => {
     if(typeof window !== 'undefined') {
         localStorage.setItem('prsnToken', JSON.stringify(data))
@@ -37,7 +37,7 @@ export const signout = (data:any,next:any) => {
 export const login = (email:string,password:string) => {
     //console.log(name,email,password)
     const body = {email,password}
-    return fetch(`http://localhost:8000/signin`, {
+    return fetch(`${API}/signin`, {
         method:'POST',
         headers: {
             Accept: 'application/json',

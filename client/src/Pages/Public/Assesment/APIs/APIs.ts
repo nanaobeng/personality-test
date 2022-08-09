@@ -1,5 +1,6 @@
+import {API} from '../../../../config';
 export const getQuestions = () => {
-    return fetch (`http://localhost:8000/questions`, {
+    return fetch (`${API}/questions`, {
         method: "GET"
     })
     .then(response => {

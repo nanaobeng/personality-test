@@ -1,5 +1,7 @@
+
+import {API} from '../../../../../config';
 export const getQuestion = (id:number) => {
-    return fetch (`http://localhost:8000/question/${id}`, {
+    return fetch (`${API}/question/${id}`, {
         method: "POST"
     })
     .then(response => {
@@ -10,7 +12,7 @@ export const getQuestion = (id:number) => {
 };
 
 export const addQuestion = (token:any,values:any) => {
-    return fetch(`http://localhost:8000/admin/question/create`, {
+    return fetch(`${API}/admin/question/create`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

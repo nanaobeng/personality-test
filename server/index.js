@@ -4,7 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const Question = require("./models/Question");
 const User = require("./models/User");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const sequelize = require("./database/db");
 
 app.use(cors());

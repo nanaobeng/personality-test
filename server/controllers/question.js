@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const formidable = require('formidable');
 const Question = require("../models/Question");
 require("dotenv").config();

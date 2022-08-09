@@ -1,5 +1,6 @@
+import {API} from '../../../config';
 export const getQuestions = () => {
-    return fetch (`http://localhost:8000/questions`, {
+    return fetch (`${API}/questions`, {
         method: "GET"
     })
     .then(response => {
@@ -12,7 +13,7 @@ export const getQuestions = () => {
 
 export const deleteQuestion = (token:any, id:any) => {
 
-    return fetch(`http://localhost:8000/admin/question/delete/${id}`, {
+    return fetch(`${API}/admin/question/delete/${id}`, {
         method: 'DELETE',
         headers: { 
             Accept: 'application/json',
