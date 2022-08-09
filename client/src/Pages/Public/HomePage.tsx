@@ -1,30 +1,42 @@
 import Layout from "../../Components/Layout";
-
+import { ExternalLink } from "react-external-link";
 const HomePage = () => {
   return (
     <Layout>
-      <div className="row p-4">
-        <div className="col-12 p-4">
-          <div className="row p-4">
-            <div className="col-6">
-              <div className="row" style={{ paddingTop: "10vh" }}>
-                <div className="col-12">
-                  <span style={{ fontSize: "7vh" }}>Know Yourself,</span>
-                </div>
-                <div className="col-12">
-                  <span style={{ fontSize: "7vh" }}> Get Tested.</span>
-                </div>
-                <div className="col-md-9 py-4">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </span>
-                </div>
-                <div className="col-12 ">
-                  <span className="btn btn-success">Get Started</span>
-                </div>
-              </div>
+      <div
+        className="row p-4"
+        style={{ minHeight: "85vh", backgroundColor: "#0D0D0D" }}
+      >
+        <div className="col-12 p-4" style={{ color: "white" }}>
+          <div
+            className="row"
+            style={{
+              paddingLeft: "10%",
+              paddingRight: "10%",
+              paddingTop: "8%",
+            }}
+          >
+            <div className="col-12 pb-4 text-center">
+              <span
+                className="font-body"
+                style={{ fontSize: "10vh", color: "white" }}
+              >
+                Accurate <span style={{ color: "#00AA45" }}>Personality</span>{" "}
+                Tests To Ensure <span style={{ color: "#00AA45" }}>You </span>
+                Know <span style={{ color: "#00AA45" }}>Yourself</span> Better
+                <span style={{ color: "#00AA45" }}>.</span>
+              </span>
+            </div>
+
+            <div className="col-12  text-center">
+              <ExternalLink href="/assesment" target="_self">
+                <span
+                  style={{ borderRadius: "0px", backgroundColor: "#00AA45" }}
+                  className="p-4 btn btn-light"
+                >
+                  <b style={{ color: "white" }}>Get Started</b>
+                </span>
+              </ExternalLink>
             </div>
           </div>
         </div>

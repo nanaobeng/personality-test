@@ -16,10 +16,7 @@ const Layout: FC<Props> = ({ children }) => {
         className="col-12 d-block d-sm-none "
         style={{ paddingTop: "7.5vh" }}
       ></div>
-      <div
-        className="col-12"
-        style={{ minHeight: "83.1vh", paddingTop: "3%", paddingBottom: "3%" }}
-      >
+      <div className="col-12" style={{ minHeight: "83.1vh" }}>
         {children}
       </div>
     </div>
