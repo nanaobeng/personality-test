@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Footer from "./Footer";
 
 import Navbar from "./Navbar";
 
@@ -18,6 +19,9 @@ const Layout: FC<Props> = ({ children }) => {
       ></div>
       <div className="col-12" style={{ minHeight: "83.1vh" }}>
         {children}
+      </div>
+      <div className="col-12">
+        <Footer />
       </div>
     </div>
   );

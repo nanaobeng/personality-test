@@ -4,7 +4,7 @@ import { getQuestions } from "./APIs/APIs";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import type { RadioChangeEvent } from "antd";
 import { Breadcrumb, Input, Radio, Space } from "antd";
-import { isConditionalExpression } from "typescript";
+import success from "../../../img/succes.gif";
 const Assesment = () => {
   const [values, setValues] = useState<any>({});
   const [reference, setReferences] = useState<any>({});
@@ -44,13 +44,13 @@ const Assesment = () => {
     return (
       i === page && (
         <div className="row" key={i}>
-          <div className="col-12 py-2">
+          <div className="col-12 pt-2 pb-4">
             <span>
               {" "}
               Question {i + 1}/{questions.length}
             </span>
           </div>
-          <div className="col-12 py-2">
+          <div className="col-12 pt-2 pb-4">
             <span
               style={{
                 fontSize: "2.2vh",
@@ -60,7 +60,7 @@ const Assesment = () => {
               {data.description}
             </span>
           </div>
-          <div className="col-12 py-2">
+          <div className="col-12 pt-2 pb-4 w-100">
             <Radio.Group
               buttonStyle="solid"
               onChange={onChange}
@@ -69,7 +69,7 @@ const Assesment = () => {
               value={values[`${i}`][0]}
               className="w-100"
             >
-              <Space direction="vertical">
+              <Space direction="vertical" className="w-100">
                 <Radio value={`${data.option_a}`} style={{ width: "100%" }}>
                   {data.option_a}
                 </Radio>
@@ -85,6 +85,7 @@ const Assesment = () => {
               </Space>
             </Radio.Group>
           </div>
+
           {pageNavigation(i)}
         </div>
       )
@@ -227,24 +228,48 @@ const Assesment = () => {
                   <i className="icofont-home"></i>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                  <span>Assesment {result}</span>
+                  <span>Assesment </span>
                 </Breadcrumb.Item>
               </Breadcrumb>
             </div>
             <div className="col-12 px-4 ">
-              <div className="row p-4">
+              <div
+                className="row "
+                style={{
+                  paddingLeft: "10%",
+                  paddingRight: "10%",
+                  paddingTop: "2%",
+                }}
+              >
                 <div
                   className="col-12 p-4 shadow-lg"
                   style={{ minHeight: "25vh", backgroundColor: "white" }}
                 >
-                  <div className="row">
-                    <div className="col-12">
-                      {questions &&
-                        questions.map((data: any, i: number) => {
-                          return assesmentForm(i, data);
-                        })}
-                    </div>
-                  </div>
+                  <>
+                    {!result ? (
+                      <div className="row">
+                        <div className="col-12">
+                          {questions &&
+                            questions.map((data: any, i: number) => {
+                              return assesmentForm(i, data);
+                            })}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="row">
+                        <div className="col-12 text-center p-4">
+                          <img src={success} alt="success_image" />
+                          <br />
+                          <span
+                            style={{ fontWeight: "bold", fontSize: "2.5vh" }}
+                          >
+                            You are an{" "}
+                            <span style={{ color: "#00AA45" }}>{result}</span>
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 </div>
               </div>
             </div>
