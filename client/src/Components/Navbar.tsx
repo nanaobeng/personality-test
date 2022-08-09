@@ -1,6 +1,7 @@
 import { Navbar, Nav } from "react-bootstrap";
-
+import { isAuthenticated } from "../Pages/Auth/APIs/APIs";
 const NavbarLayout = () => {
+  const { token, user } = isAuthenticated();
   return (
     <div className="row">
       <div className="col-12 ">
@@ -24,9 +25,17 @@ const NavbarLayout = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="/" style={{ color: "white", fontWeight: "500" }}>
-                HOME
+              <Nav.Link href="/" style={{ color: "white", fontWeight: "bold" }}>
+                Home
               </Nav.Link>
+              {isAuthenticated() && (
+                <Nav.Link
+                  href="/admin/dashboard"
+                  style={{ color: "white", fontWeight: "bold" }}
+                >
+                  Dashboard
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
